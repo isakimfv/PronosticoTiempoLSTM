@@ -6,7 +6,23 @@
 
 ## Funcionamiento
   El proyecto fue desarrollado utilizando **Python 3.11.8** en formato de Jupyter Notebook (.ipynb) el cual permite la e
-  Para la ejecución del entrenamiento y el desarrollo de pronóstico, es necesario la instalación de las siguientes dependencias:
+  Para la ejecución del entrenamiento y el desarrollo de pronóstico, las dependencias empleadas son las siguientes:
+  | Nombre                     | Descripción                                                                                                                                                         |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| openmeteo_requests         | Utilizada para la estructuración de la request en la API, con las variables deseadas, coordenadas y lapso temporal como parámetros                                  |
+| request_cache              | Permite el empleo de caché para el almacenamiento temporal de los datos de la sesión en caso de ser necesarios                                                      |
+| retry_request              | Proporciona métodos para el reintento periódico de peticiones a la API, en caso de fracasar.                                                                        |
+| Pandas                     | Crucial para la estructuración de los datos históricos en dataframes para su rápida retribución y manipulación a través de métodos integrados y optimizados         |
+| Numpy                      | Permite la utilización de arreglos lineales numpy para la introducción de datos escalados al modelo LSTM.                                                           |
+| Datetime                   | Dependencia que incluye el formato y los métodos necesarios para la manipulación de datos de tipo fecha, para la descomposición de las variables exógenas.          |
+| sklearn.metrics            | Apartado de librería Sklearn con métodos integrados para el cálculo de métricas de desempeño del modelo y su entrenamiento.                                         |
+| sklearn.preprocessing      | Otro apartado de la librería Sklearn que ofrece métodos integrados para el preprocesamiento de datos, más específicamente, su escalado relativo al mínimo y máximo. |
+| matplotlib.pyplot          | Librería que permite el desarrollo de gráficas de rendimiento y comparativas de datos durante el desarrollo del modelo.                                             |
+| tensorflow.keras.models    | Apartado de la librería tensorflow que incluye las clases y los métodos necesarios para la construcción del modelo.                                                 |
+| tensorflow.keras.layers    | Incluye las clases de las capas que conforman al modelo de pronóstico LSTM.                                                                                         |
+| tensorflow.keras.callbacks | Proporciona la capacidad de implementar los parámetros de paciencia en el entrenamiento del modelo para evitar sobre-entrenamiento                                  |
+
+	Se comienza con la instalación de las dependencias menos comunes no incluidas en Python, generalmente.
 ```Python
 !pip install openmeteo_requests   #Desarrollo de solicitudes en la API
 !pip install requests_cache       #Almacenamiento de Caché de requests
@@ -126,7 +142,7 @@ experimental_df.head()
 | 02/01/2024   01:00 | 27.532999   | 66.694046   | 1013.599976 | 1012.90918  | 0.084459 | 1.224309   |
 | 02/01/2024   02:00 | 27.483      | 66.683922   | 1013.799988 | 1013.10907  | 0.081843 | 1.221115   |
 
-  Al ya tener los datos que se emplearán en el entrenamiento del modelo, se desarrollarán variables exógenas a partir de las mismas, las cuales le proporcionen al modelo la capacidad de identificar una mayor cantidad de patrones dentro de los datos. Primeramente, el modelo solamente observa valores numéricos, por lo que en la columna *date* debe ser descompueta en sus valores primarios, es decir, "hora", "dia", "mes" y "año". También se utilizará el método *day_of_week* para obtener qué día de la semana fue cada fecha. Donde 0 sería lunes y 6 sería domingo. 
+  Al ya tener los datos que se emplearán en el entrenamiento del modelo, se desarrollarán variables exógenas a partir de las mismas, las cuales le proporcionan al modelo la capacidad de identificar una mayor cantidad de patrones dentro de los datos. Primeramente, el modelo solamente observa valores numéricos, por lo que en la columna *date* debe ser descompueta en sus valores primarios, es decir, "hora", "dia", "mes" y "año". También se utilizará el método *day_of_week* para obtener qué día de la semana fue cada fecha. Donde 0 sería lunes y 6 sería domingo. 
 
 ```python
 experimental_df['year'] = [experimental_df.index[i].year for i in range(len(experimental_df))]

@@ -5,8 +5,7 @@
   Es una red neuronal recursiva LSTM desarrollada en Python y Tensorflow, para el desarrollo de pronósticos de determinadas variables meteorológicas futuras de una región empleando datos meteorológicos históricos para desarrollar. Orientado a ser una herramienta de bajos costos y requerimientos que pueda proporcionar pronósticos climáticos de alta precisión y eficiencia que pueda ser de utilidad para organizaciones o individuos que lo requieran. 
 
 ## Funcionamiento
-  El proyecto fue desarrollado utilizando **Python 3.11.8** en formato de Jupyter Notebook (.ipynb) el cual permite la e
-  Para la ejecución del entrenamiento y el desarrollo de pronóstico, las dependencias empleadas son las siguientes:
+  El proyecto fue desarrollado utilizando **Python 3.11.8** en formato de Jupyter Notebook (.ipynb). Para la ejecución del entrenamiento y el desarrollo de pronóstico, las dependencias empleadas son las siguientes:
   | Nombre                     | Descripción                                                                                                                                                         |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | openmeteo_requests         | Utilizada para la estructuración de la request en la API, con las variables deseadas, coordenadas y lapso temporal como parámetros                                  |
